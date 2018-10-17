@@ -1,12 +1,36 @@
-vRA-deploy-VM
-=============
-
-vRA-deploy-VM is a playbook that use ansible uri core module to request a VM from vRealize automation solution
-
-![vRA-deploy-VM](http://blogs.vmware.com/management/files/2015/02/vRA-Product-Icon-Mac_0.png)
+<a href="https://www.codementor.io/aheddar?utm_source=github&utm_medium=button&utm_term=aheddar&utm_campaign=github"><img src="https://cdn.codementor.io/badges/i_am_a_codementor_dark.svg" alt="I am a codementor" style="max-width:100%"/></a> [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WX4EKLLLV49WG)
 
 
-vRA-deploy-VM Can be used to make ansible request a VM in order to replace codestream vRA tool
+# docker-anonymator
 
-UNDERCONSTUCTION
-================
+Set up tor privoxy and polipo the easy way, make all your connection over socks or proxy with 100% of anonymat 
+
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tor-logo-2011-flat.svg/612px-Tor-logo-2011-flat.svg.png)
+![](https://www.alpinelinux.org/alpinelinux-logo.svg)
+
+```
+docker run -d -p 8118:8118 -p 9050:9050 -p 8123:8123 anonymator
+
+curl --proxy localhost:8118 https://check.torproject.org/ | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}" 
+curl --socks5 localhost:9050 https://check.torproject.org/ | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}" 
+```
+## Some useful stuff
+
+```
+while true 
+   do  
+       ip=`curl -s --socks5 localhost:9050 https://check.torproject.org | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}"`
+       whois $ip | grep country
+       echo $ip
+       sleep 10
+
+   done
+...
+country:        GB
+185.0.4.X
+```
+
+## Thanks
+
+Based on https://github.com/simonpure/docker-tor-privoxy-alpine
