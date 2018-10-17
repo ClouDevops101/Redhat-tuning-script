@@ -1,36 +1,12 @@
-<a href="https://www.codementor.io/aheddar?utm_source=github&utm_medium=button&utm_term=aheddar&utm_campaign=github"><img src="https://cdn.codementor.io/badges/i_am_a_codementor_dark.svg" alt="I am a codementor" style="max-width:100%"/></a> [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WX4EKLLLV49WG)
+<a href="https://www.codementor.io/aheddar?utm_source=github&utm_medium=button&utm_term=aheddar&utm_campaign=github"><img src="https://cdn.codementor.io/badges/i_am_a_codementor_dark.svg" alt="I am a codementor" style="max-width:100%"/></a>  <img src="https://seeklogo.com/images/L/Linux_Red_Hat-logo-8B748E6BCC-seeklogo.com.png"  alt="Red hat logo" style="max-width:100%"/>   [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WX4EKLLLV49WG)
 
 
-# docker-anonymator
+# Description
 
-Set up tor privoxy and polipo the easy way, make all your connection over socks or proxy with 100% of anonymat 
+A simple script to tune up and optimizing the machine for production purpose
 
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tor-logo-2011-flat.svg/612px-Tor-logo-2011-flat.svg.png)
-![](https://www.alpinelinux.org/alpinelinux-logo.svg)
+## Requierement 
 
-```
-docker run -d -p 8118:8118 -p 9050:9050 -p 8123:8123 anonymator
+Root privilege 
 
-curl --proxy localhost:8118 https://check.torproject.org/ | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}" 
-curl --socks5 localhost:9050 https://check.torproject.org/ | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}" 
-```
-## Some useful stuff
-
-```
-while true 
-   do  
-       ip=`curl -s --socks5 localhost:9050 https://check.torproject.org | egrep -m 1 -o  "([0-9]{1,3}[\.]){3}[0-9]{1,3}"`
-       whois $ip | grep country
-       echo $ip
-       sleep 10
-
-   done
-...
-country:        GB
-185.0.4.X
-```
-
-## Thanks
-
-Based on https://github.com/simonpure/docker-tor-privoxy-alpine
